@@ -5,16 +5,21 @@
 			<small></small>
 		</h1>
 	</section>
+	<?php
+	$a =  $this->model->ticketSoldAfter($event_date);
+	$b = $this->model->ticketSoldBefore($event_date);
+	?>
 	<section class="content">
 		<div class="row">
 			<div class="col-md-3 col-sm-6 col-xs-12">
 				<div class="info-box">
 					<span class="info-box-icon bg-aqua">
-						<i class="fa fa-cog-gear"></i>
+						<i class="fa fa-money"></i>
 					</span>
 					<div class="info-box-content">
 						<span class="info-box-text">Total Tickets Sold</span>
 						<span class="info-box-number"><?php echo $this->model->ticketsSold();?></span>
+						<?php echo ($a*30)+($b*20);?> lei
 					</div>
 				</div>
 			</div>
@@ -25,29 +30,31 @@
 					</span>
 					<div class="info-box-content">
 						<span class="info-box-text">Before Event</span>
-						<span class="info-box-number"><?php echo $b = $this->model->ticketSoldBefore($event_date);?></span><?php echo $b*20;?> lei
+						<span class="info-box-number"><?php echo $b;?></span>
+						<?php echo $b*20;?> lei
 					</div>
 				</div>
 			</div>
 			<div class="col-md-3 col-sm-6 col-xs-12">
 				<div class="info-box">
 					<span class="info-box-icon bg-aqua">
-						<i class="fa fa-cog-gear"></i>
+						<i class="fa fa-line-chart"></i>
 					</span>
 					<div class="info-box-content">
 						<span class="info-box-text">During Event</span>
-						<span class="info-box-number"><?php echo $a = $this->model->ticketSoldAfter($event_date);?></span><?php echo $a*30;?> lei
+						<span class="info-box-number"><?php echo $a;?></span>
+						<?php echo $a*30;?> lei
 					</div>
 				</div>
 			</div>
 			<div class="col-md-3 col-sm-6 col-xs-12">
 				<div class="info-box">
 					<span class="info-box-icon bg-aqua">
-						<i class="fa fa-cog-gear"></i>
+						<i class="fa fa-handshake-o"></i>
 					</span>
 					<div class="info-box-content">
-						<span class="info-box-text">Revenue</span>
-						<span class="info-box-number"><?php echo ($a*30)+($b*20);?> lei</span>
+						<span class="info-box-text">Money taken</span>
+						<span class="info-box-number"><?php echo $this->model->moneyTaken();?> lei</span>
 					</div>
 				</div>
 			</div>
@@ -58,7 +65,7 @@
 					<div class="box-header with-border">
 						<h3 class="box-title">Stats</h3>
 					</div>
-					<div class="box-body">
+					<div class="box-body table-responsive no-padding">
 						<table id="table2" class="table table-bordered table-striped">
 							<thead>
 								<tr>
@@ -68,7 +75,11 @@
 									<th>Total Tickets Sold</th>
 									<th>Tickets Sold before Event</th>
 									<th>Tickets Sold during Event</th>
-									<th>Total Revenue</th>
+									<th>Total Sales</th>
+									<th>Remaining</th>
+									<th>Money taken</th>
+									<th>Update money</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -84,7 +95,24 @@
 									<td><?php echo $after = $this->model->ticketSaleAfter($member->id, $event_date);?>
 										<div class="pull-right"><?php echo $after*30;?> lei</div>
 									</td>
-									<td><?php echo ($before*20) + ($after*30);?> lei</td>
+									<td><?php echo $total = ($before*20) + ($after*30);?> lei</td>
+									<td>
+										<?php echo $diff = $total - $member->revenue;?> lei
+									</td>
+									<td>
+										<?php echo $member->revenue;?> lei
+									</td>
+									<td>
+										<form method="POST" action="">
+											<input type="hidden" name="user_id" value="<?php echo $member->id;?>">
+											<div class="form-group">
+												<input type="number" class="form-control" placeholder="Enter Money received" name="revenue" required>
+											</div>
+										</td>
+										<td>
+											<button type="submit" class="btn btn-primary pull-right" name="update_revenue">Add</button>
+										</form>
+									</td>
 								</tr>
 								<?php }?>
 							</tbody>

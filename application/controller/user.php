@@ -18,7 +18,7 @@ class User extends Controller{
 
 	public function logout(){
 		session_destroy();
-		setcookie('login', '', time() - 3600, '/');
+		setcookie('titu_login', '', time() - 3600, '/');
 		header('location:' . URL . 'home');
 	}
 }

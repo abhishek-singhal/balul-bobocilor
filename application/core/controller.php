@@ -62,14 +62,14 @@ class Controller
         if(isset($_SESSION['user_id'])){
             if(!$this->model->checkId($_SESSION['user_id'])){
                 session_destroy();
-                setcookie('fmelogin', '', time() - 36000, '/');
+                setcookie('titu_login', '', time() - 36000, '/');
                 header('location:' . URL . 'home');
             }
         }elseif(isset($_COOKIE['login'])){
             if($this->model->isCookieExist($_COOKIE['login'])){
                 $_SESSION['user_id'] = $this->model->getCookieId($_COOKIE['login']);
             }else{
-                setcookie('login', '', time() - 36000, '/');
+                setcookie('titu_login', '', time() - 36000, '/');
             }
         }else{
             header('location:' . URL . 'home');

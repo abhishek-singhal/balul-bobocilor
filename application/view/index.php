@@ -5,11 +5,11 @@
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 	<link href = "<?php echo URL;?>css/style.css" rel = "stylesheet" type = "text/css">
-	<title>LOGIN</title>
+	<title>Balul Bobocilor - Login</title>
 </head>
 <body>
 	<div class="text-center" style="padding:50px 0">
-		<div class="logo">Welcome!</div>
+		<div class="logo">Balul Bobocilor</div>
 		<!-- Main Form -->
 		<div class="login-form-1">
 			<form id="login-form" class="text-left" method = "POST" action = "">
@@ -28,7 +28,7 @@
 					<button type="submit" name = "login" class="login-button"><i class="fa fa-chevron-right"></i></button>
 				</div>
 				<div class="etc-login-form">
-
+					<?php if(isset($message)){ echo $message; }?>
 					<!-- 				<p>forgot your password? <a href="#">click here</a></p> -->
 					<!-- 				<p>new user? <a href="#">create new account</a></p> -->
 				</div>

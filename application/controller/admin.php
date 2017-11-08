@@ -15,7 +15,7 @@ class Admin extends Controller{
 		$members = $this->model->fetchTeam();
 		if(isset($_POST['create'])){
 			$name = $this->protect($_POST['name']);
-			$username = $this->protect($_POST['username']);
+			$username = strtolower($this->protect($_POST['username']));
 			$password = hash('sha256', $this->protect($_POST['password']));
 			$rank = $this->protect($_POST['rank']);
 
@@ -42,7 +42,7 @@ class Admin extends Controller{
 
 		if(isset($_POST['edit'])){
 			$name = $this->protect($_POST['name']);
-			$username = $this->protect($_POST['username']);
+			$username = strtolower($this->protect($_POST['username']));
 			$password = $this->protect($_POST['password']);
 			if($password == NULL){
 				$this->model->updateUser($id, $name, $username);
@@ -84,17 +84,18 @@ class Admin extends Controller{
 		if(isset($_POST['generate'])){
 			$number = $this->protect($_POST['number']);
 			$i=1;
-			include('../public/phpqrcode/qrlib.php');
+			//include('../public/phpqrcode/qrlib.php');
 			while($i <= $number){
 				$qrcode = rand(100000, 999999);
 				if(!$this->model->isTicketExist($qrcode)){
 					$this->model->insertSeries($qrcode);
-					$this->qrcode($qrcode);
+					//$this->qrcode($qrcode);
 					$i++;
 				}
 			}
 			header('location:' . URL . 'admin/ticket');
 		}
+		/*
 		if(isset($_POST['download'])){
 			$from = $this->protect($_POST['from']);
 			$to = $this->protect($_POST['to']);
@@ -118,6 +119,7 @@ class Admin extends Controller{
 				$status = 1;
 			}
 		}
+		*/
 		require APP . 'view/layout/header.php';
 		require APP . 'view/admin/ticket.php';
 		require APP . 'view/layout/footer.php';
@@ -164,6 +166,13 @@ class Admin extends Controller{
 		$page = "stats";
 		$event_date = "2017-11-24 14:00:00";
 		$members = $this->model->fetchTeam();
+
+		if(isset($_POST['update_revenue'])){
+			$user = $this->protect($_POST['user_id']);
+			$revenue = $this->protect($_POST['revenue']);
+			$this->model->updateUserRevenue($user, $revenue);
+			header('location:' . URL . 'admin/stats');
+		}
 		require APP . 'view/layout/header.php';
 		require APP . 'view/admin/stats.php';
 		require APP . 'view/layout/footer.php';

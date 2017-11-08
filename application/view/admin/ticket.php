@@ -45,6 +45,7 @@
 					From and To are Out of Bounds.
 				</div>
 				<?php }}?>
+				<!--
 				<div class="box" style="border-top: none">
 					<div class="box-header with-border">
 						<h3 class="box-title">Download QRCODE Images</h3>
@@ -66,6 +67,7 @@
 						</form>
 					</div>
 				</div>
+				-->
 			</div>
 		</div>
 	</section>

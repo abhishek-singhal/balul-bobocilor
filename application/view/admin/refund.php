@@ -1,5 +1,3 @@
-<script src="<?php echo URL;?>js/qrcode.js"></script>
-<link rel="stylesheet" href="<?php echo URL;?>css/qrcode.css">
 <div class="content-wrapper">
 	<section class="content-header">
 		<h1>Refund Ticket
@@ -36,12 +34,9 @@
 					<div class="box-body">
 						<form method="POST" action="">
 							<div class="form-group">
-								<label for="exampleInputEmail1">Scan QR code or enter Ticket Code:</label><br>
-								<input type="number" placeholder="Enter Number" class="qrcode-text" name="ticket">
-								<label class="qrcode-text-btn">
-									<input type="file" accept="image/*" capture="environment" onclick="openQRCamera(this);">
-								</label>
-								<p class="help-block">Click icon to open camera.</p>
+								<label for="exampleInputEmail1">Enter Number:</label>
+								<input type="number" placeholder="Enter Number" class="form-control" name="ticket">
+								<!-- <p class="help-block">Click icon to open camera.</p> -->
 							</div>
 
 							<div class="box-footer">
@@ -55,24 +50,3 @@
 		</div>
 	</section>
 </div>
-<script>
-	function openQRCamera(node) {
-		var reader = new FileReader();
-		reader.onload = function() {
-			node.value = "";
-			qrcode.callback = function(res) {
-				if(res instanceof Error) {
-					alert("No QR code found. Please make sure the QR code is within the camera's frame and try again.");
-				} else {
-					node.parentNode.previousElementSibling.value = res;
-				}
-			};
-			qrcode.decode(reader.result);
-		};
-		reader.readAsDataURL(node.files[0]);
-	}
-
-	// function showQRIntro() {
-	// 	return confirm("Use your camera to take a picture of a QR code.");
-	// }
-</script>

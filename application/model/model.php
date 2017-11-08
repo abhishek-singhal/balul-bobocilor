@@ -62,7 +62,7 @@ class Model
     }
 
     public function fetchTeam(){
-        $sql = "SELECT * FROM users LEFT OUTER JOIN ranks ON users.rank = ranks.rank";
+        $sql = "SELECT * FROM users LEFT OUTER JOIN ranks ON users.rank = ranks.rank ORDER BY name";
         $query = $this->db->prepare($sql);
         $parameters = array('');
         $query->execute($parameters);
@@ -190,7 +190,7 @@ class Model
     }
 
     public function refundTicket($id){
-        $sql = "UPDATE tickets SET user_id =  NULL, cnp = NULL, name = NULL, dob = NULL, time = NULL WHERE id = :id";
+        $sql = "UPDATE tickets SET user_id =  NULL, cnp = NULL, name = NULL, dob = NULL, school = NULL, time = NULL WHERE id = :id";
         $query = $this->db->prepare($sql);
         $parameters = array(':id' => $id);
         $query->execute($parameters);
@@ -273,5 +273,19 @@ class Model
         $parameters = array('');
         $query->execute($parameters);
         return $query->fetchAll();
+    }
+
+    public function updateUserRevenue($user_id, $revenue){
+        $sql = "UPDATE users SET revenue = revenue + :revenue WHERE id = :user_id";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':user_id' => $user_id, ':revenue' => $revenue);
+        $query->execute($parameters);
+    }
+
+    public function moneyTaken(){
+        $sql = "SELECT sum(revenue) AS total FROM users";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        return $query->fetch()->total;
     }
 }
