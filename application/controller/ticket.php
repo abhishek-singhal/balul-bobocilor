@@ -42,8 +42,8 @@ class Ticket extends Controller{
 
 	public function verify(){
 		$page = "verify";
-		if(isset($_POST['verify'])){
-			$ticket = $this->protect($_POST['ticket']);
+		if(isset($_GET['verify'])){
+			$ticket = $this->protect($_GET['ticket']);
 			if($this->model->isTicketExist($ticket)){
 				if($this->model->isTicketSold($ticket)){
 					$info = $this->model->getTicket($ticket);
@@ -54,6 +54,18 @@ class Ticket extends Controller{
 			}else{
 				$status = 1;
 			}
+		}
+		if(isset($_POST['checkin'])){
+			$ticket = $this->protect($_POST['ticket']);
+			$checkin = 1;
+			$this->model->updateCheckIn($ticket, $checkin);
+			header('location:' . URL . 'ticket/verify?ticket='.$ticket.'&verify=');
+		}
+		if(isset($_POST['checkout'])){
+			$ticket = $this->protect($_POST['ticket']);
+			$checkout = 0;
+			$this->model->updateCheckIn($ticket, $checkout);
+			header('location:' . URL . 'ticket/verify?ticket='.$ticket.'&verify=');
 		}
 		require APP . 'view/layout/header.php';
 		require APP . 'view/verify.php';

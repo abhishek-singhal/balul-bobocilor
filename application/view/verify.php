@@ -60,7 +60,36 @@
 									<?php echo $info->id;?>
 								</div>
 							</div>
-							<hr>
+							<div class="form-group">
+								<label class="col-sm-2">Status</label>
+								<div class="col-sm-10">
+									<?php if($info->checkin){
+										echo "Checked In";
+									}else{
+										echo "Not Checked In";
+									}?>
+								</div>
+							</div>
+						</form>
+						<form method="POST" action="" class="form-horizontal">
+							<div class="form-group">
+								<label class="col-sm-2">Update Status</label>
+								<div class="col-sm-10">
+									<input type="hidden" name="ticket" value="<?php echo $info->id;?>">
+									<?php if($info->checkin){?>
+									<button type="submit" class="btn btn-danger btn-xs" name="checkout">
+										Check out
+									</button>
+									<?php }else{?>
+									<button type="submit" class="btn btn-success btn-xs" name="checkin">
+										Check in
+									</button>
+									<?php }?>
+								</div>
+							</div>
+						</form>
+						<hr>
+						<form class="form-horizontal">
 							<div class="form-group">
 								<label class="col-sm-2">Vandut de</label>
 								<div class="col-sm-10">
@@ -83,7 +112,7 @@
 						<h3 class="box-title">numar bilet</h3>
 					</div> -->
 					<div class="box-body">
-						<form method="POST" action="">
+						<form method="GET" action="">
 							<div class="form-group">
 								<label for="exampleInputEmail1">Introdu numar bilet:</label>
 								<input type="number" placeholder="Introdu numar bilet" class="form-control" name="ticket" required>

@@ -190,7 +190,7 @@ class Model
     }
 
     public function refundTicket($id){
-        $sql = "UPDATE tickets SET user_id =  NULL, cnp = NULL, name = NULL, dob = NULL, school = NULL, time = NULL WHERE id = :id";
+        $sql = "UPDATE tickets SET user_id =  NULL, cnp = NULL, name = NULL, dob = NULL, school = NULL, time = NULL, checkin = 0 WHERE id = :id";
         $query = $this->db->prepare($sql);
         $parameters = array(':id' => $id);
         $query->execute($parameters);
@@ -287,5 +287,12 @@ class Model
         $query = $this->db->prepare($sql);
         $query->execute();
         return $query->fetch()->total;
+    }
+
+    public function updateCheckIn($ticket, $checkin){
+        $sql = "UPDATE tickets SET checkin = :checkin WHERE id = :ticket";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':checkin' => $checkin, ':ticket' => $ticket);
+        $query->execute($parameters);
     }
 }
