@@ -24,7 +24,7 @@ class Home extends Controller{
 				//redirect
 				header('location:' . URL . 'user');
 			}else{
-				$message = "Date de conectare invalide";
+				$message = "Invalid Credentials";
 			}
  		}
 		require APP . 'view/index.php';

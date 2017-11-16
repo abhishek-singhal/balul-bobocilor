@@ -1,6 +1,6 @@
 <div class="content-wrapper">
 	<section class="content-header">
-		<h1>Acasa
+		<h1>Dashboard
 			<small></small>
 		</h1>
 	</section>
@@ -12,10 +12,10 @@
 						<h3 class="box-title">Stats</h3>
 					</div>
 					<div class="box-body">
-						Numar total de bilete : <?php echo $total_tickets;?><br>
-						Bilete vandute : <?php echo $sold_tickets;?><br>
-						Target vanzare : 400<br>
-						Bilete nevandute : <?php echo $unsold_tickets;?>
+						Total Tickets : <?php echo $total_tickets;?><br>
+						Tickets sold : <?php echo $sold_tickets;?><br>
+						Target/Goal : 400<br>
+						Unsold Tickets : <?php echo $unsold_tickets;?>
 					</div>
 				</div>
 			</div>

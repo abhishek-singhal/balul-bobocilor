@@ -60,7 +60,7 @@
 					<li class="header text-center">MAIN NAVIGATION</li>
 					<li <?php if($page == "dashboard"){?>class="active"<?php }?>>
 						<a href="<?php echo URL;?>user">
-							<i class="fa fa-dashboard"></i> <span>Acasa</span>
+							<i class="fa fa-dashboard"></i> <span>Dashboard</span>
 							<span class="pull-right-container">
 								<!--<small class="label pull-right bg-blue">1</small>-->
 							</span>
@@ -69,7 +69,7 @@
 					<?php if($user->rank >= 2){?>
 					<li <?php if($page == "sell"){?>class="active"<?php }?>>
 						<a href="<?php echo URL;?>ticket/sell">
-							<i class="fa fa-money"></i> <span>Vinde Bilet</span>
+							<i class="fa fa-money"></i> <span>Sell Ticket</span>
 							<span class="pull-right-container">
 								<!--<small class="label pull-right bg-blue">1</small>-->
 							</span>
@@ -78,7 +78,7 @@
 					<?php }?>
 					<li <?php if($page == "verify"){?>class="active"<?php }?>>
 						<a href="<?php echo URL;?>ticket/verify">
-							<i class="fa fa-search"></i> <span>Verifica Bilet</span>
+							<i class="fa fa-search"></i> <span>Verify Ticket</span>
 							<span class="pull-right-container">
 								<!--<small class="label pull-right bg-blue">1</small>-->
 							</span>
