@@ -77,7 +77,7 @@
 					</li>
 					<?php }?>
 					<li <?php if($page == "verify"){?>class="active"<?php }?>>
-						<a href="<?php echo URL;?>ticket/verify">
+						<a href="<?php echo URL;?>ticket/verify" onclick="loading()">
 							<i class="fa fa-search"></i> <span>Verify Ticket</span>
 							<span class="pull-right-container">
 								<!--<small class="label pull-right bg-blue">1</small>-->

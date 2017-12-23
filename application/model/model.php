@@ -295,4 +295,18 @@ class Model
         $parameters = array(':checkin' => $checkin, ':ticket' => $ticket);
         $query->execute($parameters);
     }
+
+    public function fetchAllTickets(){
+        $sql = "SELECT * FROM tickets";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();
+    }
+
+    public function updateFix($id, $school){
+        $sql = "UPDATE tickets SET school = :school WHERE id = :id";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':school' => $school, ':id' => $id);
+        $query->execute($parameters);
+    }
 }
